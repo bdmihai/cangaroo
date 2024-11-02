@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Backend::instance().addCanDriver(*(new CandleApiDriver(Backend::instance())));
 #endif
     Backend::instance().addCanDriver(*(new SLCANDriver(Backend::instance())));
-    // Backend::instance().addCanDriver(*(new CANBlasterDriver(Backend::instance())));
+    //Backend::instance().addCanDriver(*(new CANBlasterDriver(Backend::instance())));
 
     setWorkspaceModified(false);
     newWorkspace();
@@ -102,7 +102,6 @@ void MainWindow::updateMeasurementActions()
     ui->actionStart_Measurement->setEnabled(!running);
     ui->actionSetup->setEnabled(!running);
     ui->actionStop_Measurement->setEnabled(running);
-
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
@@ -123,7 +122,7 @@ QMainWindow *MainWindow::createTab(QString title)
 {
     QMainWindow *mm = new QMainWindow(this);
     QPalette pal(palette());
-    pal.setColor(QPalette::Background, QColor(0xeb, 0xeb, 0xeb));
+    pal.setColor(QPalette::Window, QColor(0xeb, 0xeb, 0xeb));
     mm->setAutoFillBackground(true);
     mm->setPalette(pal);
     ui->mainTabs->addTab(mm, title);
@@ -141,7 +140,6 @@ void MainWindow::stopAndClearMeasurement()
     QCoreApplication::processEvents();
     backend().clearTrace();
     backend().clearLog();
-
 }
 
 void MainWindow::clearWorkspace()
@@ -266,6 +264,7 @@ bool MainWindow::saveWorkspaceToFile(QString filename)
         log_error(QString("Cannot open workspace file for writing: %1").arg(filename));
         return false;
     }
+
 }
 
 void MainWindow::newWorkspace()
@@ -274,7 +273,7 @@ void MainWindow::newWorkspace()
         stopAndClearMeasurement();
         clearWorkspace();
         createTraceWindow();
-        backend().setDefaultSetup();
+        //backend().setDefaultSetup();
     }
 }
 
@@ -497,8 +496,7 @@ void MainWindow::saveTraceToFile()
 
     QFileDialog fileDialog(0, "Save Trace to file", QDir::currentPath(), filters);
     fileDialog.setAcceptMode(QFileDialog::AcceptSave);
-    fileDialog.setOption(QFileDialog::DontConfirmOverwrite,false);
-    //fileDialog.setConfirmOverwrite(true);
+    fileDialog.setOption(QFileDialog::DontConfirmOverwrite, false);
     fileDialog.selectNameFilter(defaultFilter);
     fileDialog.setDefaultSuffix("asc");
     if (fileDialog.exec()) {

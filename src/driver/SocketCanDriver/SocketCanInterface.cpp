@@ -49,7 +49,7 @@ SocketCanInterface::SocketCanInterface(SocketCanDriver *driver, int index, QStri
   : CanInterface((CanDriver *)driver),
 	_idx(index),
     _isOpen(false),
-	_fd(0),
+    _fd(0),
     _name(name),
     _ts_mode(ts_mode_SIOCSHWTSTAMP)
 {

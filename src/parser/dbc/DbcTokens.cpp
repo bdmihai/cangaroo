@@ -128,7 +128,7 @@ bool DbcWhitespaceToken::acceptsChar(QChar ch)
     return ch.isSpace();
 }
 
-DbcRegExpToken::DbcRegExpToken(int line, int column, dbc_token_type_t type, QRegExp re)
+DbcRegExpToken::DbcRegExpToken(int line, int column, dbc_token_type_t type, QRegularExpression re)
   : DbcToken(line, column, type),
     _re(re)
 {
@@ -137,7 +137,7 @@ DbcRegExpToken::DbcRegExpToken(int line, int column, dbc_token_type_t type, QReg
 bool DbcRegExpToken::acceptsChar(QChar ch)
 {
     QString s = _data + ch;
-    return (_re.indexIn(s)==0);
+    return _re.match(s).hasMatch();
 }
 
 DbcSingleCharToken::DbcSingleCharToken(int line, int column, dbc_token_type_t type, QChar ch)

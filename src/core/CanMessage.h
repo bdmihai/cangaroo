@@ -93,7 +93,6 @@ public:
     QString getIdString() const;
     QString getDataHexString() const;
 
-
 private:
 	uint32_t _raw_id;
     uint8_t _dlc;

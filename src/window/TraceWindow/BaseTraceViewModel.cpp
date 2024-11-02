@@ -76,17 +76,17 @@ QVariant BaseTraceViewModel::headerData(int section, Qt::Orientation orientation
     }
     else if (role == Qt::TextAlignmentRole) {
         switch (section) {
-            case column_index: return Qt::AlignCenter + Qt::AlignVCenter;
-            case column_timestamp: return Qt::AlignCenter + Qt::AlignVCenter;
-            case column_channel: return Qt::AlignCenter + Qt::AlignVCenter;
-            case column_direction: return Qt::AlignCenter + Qt::AlignVCenter;
-            case column_type: return Qt::AlignCenter + Qt::AlignVCenter;
-            case column_canid: return Qt::AlignCenter + Qt::AlignVCenter;
-            case column_sender: return Qt::AlignLeft + Qt::AlignVCenter;
-            case column_name: return Qt::AlignLeft + Qt::AlignVCenter;
-            case column_dlc: return Qt::AlignCenter + Qt::AlignVCenter;
-            case column_data: return Qt::AlignLeft + Qt::AlignVCenter;
-            case column_comment: return Qt::AlignLeft + Qt::AlignVCenter;
+            case column_index: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+            case column_timestamp: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+            case column_channel: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+            case column_direction: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+            case column_type: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+            case column_canid: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+            case column_sender: return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
+            case column_name: return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
+            case column_dlc: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+            case column_data: return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
+            case column_comment: return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
             default: return QVariant();
         }
     }
@@ -101,7 +101,7 @@ QVariant BaseTraceViewModel::data(const QModelIndex &index, int role) const
             return data_DisplayRole(index, role);
         case Qt::TextAlignmentRole:
             return data_TextAlignmentRole(index, role);
-        case Qt::TextColorRole:
+        case Qt::ForegroundRole:
             return data_TextColorRole(index, role);
         case Qt::ToolTipRole:
         {
@@ -282,17 +282,17 @@ QVariant BaseTraceViewModel::data_TextAlignmentRole(const QModelIndex &index, in
 {
     (void) role;
     switch (index.column()) {
-        case column_index: return Qt::AlignCenter + Qt::AlignVCenter;
-        case column_timestamp: return Qt::AlignRight + Qt::AlignVCenter;
-        case column_channel: return Qt::AlignCenter + Qt::AlignVCenter;
-        case column_direction: return Qt::AlignCenter + Qt::AlignVCenter;
-        case column_type: return Qt::AlignCenter + Qt::AlignVCenter;
-        case column_canid: return Qt::AlignRight + Qt::AlignVCenter;
-        case column_sender: return Qt::AlignLeft + Qt::AlignVCenter;
-        case column_name: return Qt::AlignLeft + Qt::AlignVCenter;
-        case column_dlc: return Qt::AlignCenter + Qt::AlignVCenter;
-        case column_data: return Qt::AlignLeft + Qt::AlignVCenter;
-        case column_comment: return Qt::AlignLeft + Qt::AlignVCenter;
+        case column_index: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+        case column_timestamp: return (QVariant)(Qt::AlignRight | Qt::AlignVCenter);
+        case column_channel: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+        case column_direction: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+        case column_type: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+        case column_canid: return (QVariant)(Qt::AlignRight | Qt::AlignVCenter);
+        case column_sender: return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
+        case column_name: return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
+        case column_dlc: return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
+        case column_data: return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
+        case column_comment: return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
         default: return QVariant();
     }
 }

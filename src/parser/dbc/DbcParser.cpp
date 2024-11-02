@@ -52,7 +52,7 @@ bool DbcParser::parseFile(QFile *file, CanDb &candb)
 DbcToken *DbcParser::createNewToken(QChar ch, int line, int column)
 {
     static const QString acceptableIdStartChars("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_");
-    static const QRegExp numberRegExp("^(\\d+(\\.\\d*)?(E[-+]?\\d*)?)$");
+    static const QRegularExpression numberRegExp("^(\\d+(\\.\\d*)?(E[-+]?\\d*)?)$");
 
     if (ch.isSpace()) {
         return new DbcWhitespaceToken(line, column);
@@ -104,7 +104,7 @@ DbcParser::error_t DbcParser::tokenize(QFile *file, DbcParser::DbcTokenList &tok
     error_t retval = err_ok;
 
     QTextStream in(file);
-    in.setCodec("ISO 8859-1");
+    in.setEncoding(QStringConverter::Latin1);
 
     while (true) {
         QString s = in.read(1);
@@ -267,7 +267,7 @@ bool DbcParser::expectString(DbcParser::DbcTokenList &tokens, QString *str, bool
     QString quotedStr;
     if (expectData(tokens, dbc_tok_string, &quotedStr, skipWhitespace)) {
         // Remove any escape characters
-        quotedStr.replace(QRegExp("\\\\(.)"), "\\1");
+        quotedStr.replace(QRegularExpression("\\\\(.)"), "\\1");
 
         // Remove leading and trailing quotes
         if (quotedStr.length() >=2 ) {

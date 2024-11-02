@@ -91,11 +91,11 @@ QVariant LogModel::headerData(int section, Qt::Orientation orientation, int role
     else if (role == Qt::TextAlignmentRole) {
         switch (section) {
         case column_time:
-            return Qt::AlignRight + Qt::AlignVCenter;
+            return (QVariant)(Qt::AlignRight | Qt::AlignVCenter);
         case column_level:
-            return Qt::AlignCenter + Qt::AlignVCenter;
+            return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
         case column_text:
-            return Qt::AlignLeft + Qt::AlignVCenter;
+            return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
         default:
             return QVariant();
         }
@@ -110,11 +110,11 @@ QVariant LogModel::data(const QModelIndex &index, int role) const
     if (role == Qt::TextAlignmentRole) {
         switch (index.column()) {
             case column_time:
-                return Qt::AlignRight + Qt::AlignVCenter;
+                return (QVariant)(Qt::AlignRight | Qt::AlignVCenter);
             case column_level:
-                return Qt::AlignCenter + Qt::AlignVCenter;
+                return (QVariant)(Qt::AlignCenter | Qt::AlignVCenter);
             case column_text:
-                return Qt::AlignLeft + Qt::AlignVCenter;
+                return (QVariant)(Qt::AlignLeft | Qt::AlignVCenter);
             default:
                 return QVariant();
         }
